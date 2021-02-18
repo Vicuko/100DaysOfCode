@@ -34,7 +34,7 @@ def print_comparison(compared_accounts):
     print (f"Compare A: {a['name']}, {a['description']}, from {a['country']}.")
     print_vs()
     print (f"Against B: {b['name']}, {b['description']}, from {b['country']}.")
-    print (f"Pssst... it's {a['name'] if a['follower_count'] > b['follower_count'] else b['name']}")
+    # print (f"Pssst... it's {a['name'] if a['follower_count'] > b['follower_count'] else b['name']}")
 
 # TODO - Create a function to validate the result
 def validate(guess, compared_accounts):

@@ -1,4 +1,4 @@
-from menu import MENU, resources
+from resources import MENU, resources
 
 POWER_ON = True
 RESOURCES = resources

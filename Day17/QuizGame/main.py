@@ -12,12 +12,8 @@ for line in question_data:
 
 quiz = QuizBrain(question_bank)
 
-def next_question():
-    next_question = quiz.question_list[quiz.question_number].text
-    quiz.question_number += 1
-    return next_question
-
-next_answer = input(f"{next_question()} True or False? ")
+while quiz.still_has_questions():
+    quiz.next_question()
 
     # Another way of writing it down:
     # question_bank.append(Question(line["text"], line["answer"]))

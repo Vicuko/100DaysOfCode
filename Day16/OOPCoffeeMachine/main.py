@@ -13,12 +13,13 @@ class CoffeeMachine:
     def start(self):
         while self.on:
             print("Welcome to your coffee machine!\n")
-            self.coffee_maker.report()
-            self.money_machine.report()
             request = input(f"\nWhat would you like? ({self.menu.get_items()}):").lower()
             if request == "off":
                 self.on = False
                 print ("Bye bye!")
+            elif request == "report":
+                self.coffee_maker.report()
+                self.money_machine.report()
             else:
                 order = self.menu.find_drink(request)
                 if order:

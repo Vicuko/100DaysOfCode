@@ -16,4 +16,5 @@ table = PrettyTable()
 table.add_column("Pokemon Name", ["Pikachu","Squirtle","Charmander","Bulbasaur"])
 table.add_column("Type", ["Electric","Water","Fire","Grass"])
 table.align["Pokemon Name"]="r"
-print(table)
+print (table)
+print (table.align)

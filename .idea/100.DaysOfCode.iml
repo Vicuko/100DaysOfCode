@@ -5,6 +5,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="CoffeeMachine" />
+    <orderEntry type="module" module-name="Day16Start" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

@@ -1,12 +1,12 @@
 from question_model import Question
-from data import question_data
+from data import question_data, downloaded_data
 from quiz_brain import QuizBrain
 
 question_bank = list()
 
-for line in question_data:
-    question_text = line["text"]
-    question_answer = line["answer"]
+for line in downloaded_data:
+    question_text = line["question"]
+    question_answer = line["correct_answer"]
     new_question = Question(question_text, question_answer)
     question_bank.append(new_question)
 

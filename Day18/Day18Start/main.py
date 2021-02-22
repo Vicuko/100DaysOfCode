@@ -1,15 +1,14 @@
-from turtle import Turtle, Screen
+import turtle as t
 import random
 
-tim = Turtle()
-tom = Turtle()
+t.colormode(255)
+tim = t.Turtle()
+tom = t.Turtle()
 
 tim.shape("turtle")
 tim.color("blue")
 # tom.shape("circle")
 # tom.color("green")
-
-colours_palette = ["blue","chartreuse", "magenta", "sky blue", "yellow", "black", "dodger blue"]
 
 def draw_shape(turtle, side_num):
     angle = 360 / side_num
@@ -32,9 +31,10 @@ def disc_line(turtle, length):
         turtle.down()
     turtle.forward(remainder)
 
-def random_walk(turtle, length, colors = ["blue"]):
+def random_walk(turtle, length):
     angles = list(range(0,360,90))
-    turtle.color(random.choice(colors))
+    random_color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
+    turtle.color(random_color)
     turtle.setheading(random.choice(angles))
     turtle.forward(length)
 
@@ -69,10 +69,10 @@ def random_walk(turtle, length, colors = ["blue"]):
 #     draw_shape(tim, side_num)
 
 # Draw a random walk:
-tim.speed("fast")
+tim.speed("fastest")
 tim.width(10)
 for _ in range(200):
-    random_walk(tim, 20, colours_palette)
+    random_walk(tim, 30)
 
 
 
@@ -82,5 +82,5 @@ for _ in range(200):
 
 
 
-screen = Screen()
+screen = t.Screen()
 screen.exitonclick()

@@ -47,12 +47,20 @@ def disc_line(turtle, length):
 
 #Draw several shapes overlaid:
 
-max_sides_num = 10
+max_sides_num = 12
+
+colours_palette = ["blue","chartreuse", "magenta", "sky blue", "yellow", "black", "dodger blue"]
+
+def draw_shape(turtle, side_num):
+    angle = 360 / side_num
+    for _ in range(side_num):
+        turtle.right(angle)
+        turtle.forward(100)
 
 for side_num in range(3, max_sides_num+1):
-    for i in range(side_num):
-        tim.right(360/side_num)
-        tim.forward(100)
+    tim.color(colours_palette[side_num % len(colours_palette)])
+    draw_shape(tim, side_num)
+
 
 
 

@@ -23,25 +23,36 @@ def disc_line(turtle, length):
         turtle.down()
     turtle.forward(remainder)
 
-for _ in range(9):
-    tim.left(30)
-    disc_line(tim, 50)
-    tim.left(150)
-    disc_line(tim, 50)
-    tim.right(100)
+# for _ in range(9):
+#     tim.left(30)
+#     disc_line(tim, 50)
+#     tim.left(150)
+#     disc_line(tim, 50)
+#     tim.right(100)
+#
+# tim.right(15)
+#
+#
+# tim.color("red")
+# for _ in range(9):
+#     tim.left(30)
+#     tim.forward(70)
+#     tim.left(150)
+#     tim.forward(70)
+#     tim.right(100)
+#
+# for _ in range(4):
+#     tom.right(90)
+#     tom.forward(100)
 
-tim.color("red")
-for _ in range(9):
-    tim.left(30)
-    tim.forward(70)
-    tim.left(150)
-    tim.forward(70)
-    tim.right(100)
+#Draw several shapes overlaid:
 
-for _ in range(4):
-    tom.right(90)
-    tom.forward(100)
+max_sides_num = 10
 
+for side_num in range(3, max_sides_num+1):
+    for i in range(side_num):
+        tim.right(360/side_num)
+        tim.forward(100)
 
 
 

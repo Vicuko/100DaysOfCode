@@ -6,8 +6,8 @@ tom = Turtle()
 
 tim.shape("turtle")
 tim.color("blue")
-tom.shape("circle")
-tom.color("green")
+# tom.shape("circle")
+# tom.color("green")
 
 colours_palette = ["blue","chartreuse", "magenta", "sky blue", "yellow", "black", "dodger blue"]
 
@@ -35,7 +35,7 @@ def disc_line(turtle, length):
 def random_walk(turtle, length, colors = ["blue"]):
     angles = list(range(0,360,90))
     turtle.color(random.choice(colors))
-    turtle.right(random.choice(angles))
+    turtle.setheading(random.choice(angles))
     turtle.forward(length)
 
 
@@ -71,7 +71,7 @@ def random_walk(turtle, length, colors = ["blue"]):
 # Draw a random walk:
 tim.speed("fast")
 tim.width(10)
-for _ in range(100):
+for _ in range(200):
     random_walk(tim, 20, colours_palette)
 
 

@@ -41,12 +41,13 @@ def random_walk(turtle, length):
     turtle.setheading(random.choice(angles))
     turtle.forward(length)
 
-def circle_drawer(turtle, angle_variation, radius):
+def spirograph_drawer(turtle, angle_variation, radius):
     circle_num = 360 // angle_variation
     for _ in range(circle_num):
         turtle.color(random_color())
         turtle.circle(radius)
-        turtle.left(angle_variation)
+        turtle.setheading(turtle.heading() + angle_variation)
+
 
 # for _ in range(9):
 #     tim.left(30)
@@ -83,9 +84,9 @@ def circle_drawer(turtle, angle_variation, radius):
 # for _ in range(200):
 #     random_walk(tim, 30)
 
-# Draw circles varying at a specific angle:
+# Draw circles varying at a specific angle to create a spirograph:
 tim.speed("fastest")
-circle_drawer(tim, 20, 100)
+spirograph_drawer(tim, 5, 100)
 
 
 

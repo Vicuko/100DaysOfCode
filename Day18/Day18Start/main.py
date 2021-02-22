@@ -31,13 +31,22 @@ def disc_line(turtle, length):
         turtle.down()
     turtle.forward(remainder)
 
+def random_color():
+    random_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+    return random_color
+
 def random_walk(turtle, length):
     angles = list(range(0,360,90))
-    random_color = (random.randint(0,255), random.randint(0,255), random.randint(0,255))
-    turtle.color(random_color)
+    turtle.color(random_color())
     turtle.setheading(random.choice(angles))
     turtle.forward(length)
 
+def circle_drawer(turtle, angle_variation, radius):
+    circle_num = 360 // angle_variation
+    for _ in range(circle_num):
+        turtle.color(random_color())
+        turtle.circle(radius)
+        turtle.left(angle_variation)
 
 # for _ in range(9):
 #     tim.left(30)
@@ -69,12 +78,14 @@ def random_walk(turtle, length):
 #     draw_shape(tim, side_num)
 
 # Draw a random walk:
+# tim.speed("fastest")
+# tim.width(10)
+# for _ in range(200):
+#     random_walk(tim, 30)
+
+# Draw circles varying at a specific angle:
 tim.speed("fastest")
-tim.width(10)
-for _ in range(200):
-    random_walk(tim, 30)
-
-
+circle_drawer(tim, 20, 100)
 
 
 

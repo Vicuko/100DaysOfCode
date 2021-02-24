@@ -39,6 +39,7 @@ class Snake:
         self.change_direction(180)
 
     def change_direction(self, new_direction):
+        # We make sure the snake doesnt' go backwards:
         if abs(self.head.heading() - new_direction) != 180:
             print(new_direction)
             self.head.setheading(new_direction)

@@ -25,3 +25,20 @@ class Snake:
             this_body_part.goto(next_position)
         snake_head = self.body[0]
         snake_head.forward(self.body_size)
+
+    def move_up(self):
+        self.change_direction(90)
+
+    def move_down(self):
+        self.change_direction(270)
+
+    def move_right(self):
+        self.change_direction(0)
+
+    def move_left(self):
+        self.change_direction(180)
+
+    def change_direction(self, new_direction):
+        snake_head = self.body[0]
+        print(new_direction)
+        snake_head.setheading(new_direction)

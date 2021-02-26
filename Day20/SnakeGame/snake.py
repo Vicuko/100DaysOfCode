@@ -19,15 +19,18 @@ class Snake:
         body_part = t.Turtle(self.body_shape)
         body_part.color(self.snake_color)
         body_part.penup()
-        print(position_x, position_y)
-        body_part.setpos(x=position_x, y=position_y)
+        body_part.setpos(x = position_x, y = position_y)
         self.body.append(body_part)
 
+        counter = 0
+        for segment in self.body:
+            print (f"Coutner: {counter}\n")
+            print(segment.position())
+            counter += 1
+
     def extend(self):
-        tail_index = len(self.body)-1
-        tail = self.body[tail_index]
-        tail_pos = tail.position()
-        self.add_segment(int(tail_pos[0]),int(tail_pos[1]))
+        tail_pos = self.body[-1].position()
+        self.add_segment(tail_pos[0], tail_pos[1])
 
     def move(self):
         for i in range(len(self.body) - 1, 0, -1):

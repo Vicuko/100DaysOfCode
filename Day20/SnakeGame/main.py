@@ -31,4 +31,9 @@ while game_on:
         food.refresh()
         scoreboard.increase_score()
 
+    #Detect collision with walls
+    highest_cor = max(snake.head.xcor(), snake.head.ycor())
+    if highest_cor > 280 or highest_cor < -280:
+        scoreboard.game_over()
+        game_on = False
 screen.exitonclick()

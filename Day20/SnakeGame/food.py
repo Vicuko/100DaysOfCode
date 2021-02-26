@@ -10,6 +10,9 @@ class Food(Turtle):
         self.shapesize(stretch_len=height/20, stretch_wid=width/20)
         self.color(color)
         self.speed(speed)
+        self.refresh()
+
+    def refresh(self):
         possible_coords = list(range(-280, 280, 20))
         random_x = random.choice(possible_coords)
         random_y = random.choice(possible_coords)

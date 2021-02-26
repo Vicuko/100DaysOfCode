@@ -11,12 +11,23 @@ class Snake:
         self.head = self.body[0]
 
     def create_snake(self):
-        for i in range(self.init_size):
-            body_part = t.Turtle(self.body_shape)
-            body_part.color(self.snake_color)
-            body_part.penup()
-            body_part.setpos(x=-i * self.body_size, y=0)
-            self.body.append(body_part)
+        for position in range(self.init_size):
+            position_x = -position * self.body_size
+            self.add_segment(position_x)
+
+    def add_segment(self, position_x, position_y=0):
+        body_part = t.Turtle(self.body_shape)
+        body_part.color(self.snake_color)
+        body_part.penup()
+        print(position_x, position_y)
+        body_part.setpos(x=position_x, y=position_y)
+        self.body.append(body_part)
+
+    def extend(self):
+        tail_index = len(self.body)-1
+        tail = self.body[tail_index]
+        tail_pos = tail.position()
+        self.add_segment(int(tail_pos[0]),int(tail_pos[1]))
 
     def move(self):
         for i in range(len(self.body) - 1, 0, -1):

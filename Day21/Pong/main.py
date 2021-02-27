@@ -1,4 +1,5 @@
 from turtle import Screen
+from paddle import Paddle
 
 GAME_NAME = "TURBO PONG"
 BACKGROUND_COLOR = "BLACK"
@@ -10,6 +11,8 @@ screen.bgcolor(BACKGROUND_COLOR)
 screen.listen()
 
 #TODO 2. Create and move a paddle
+player1 = Paddle()
+player2 = Paddle()
 #TODO 3. Create another paddle
 #TODO 4. Create the ball and make it move
 #TODO 5. Detect collision with the wall and bounce

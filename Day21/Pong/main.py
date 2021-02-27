@@ -6,7 +6,7 @@ BACKGROUND_COLOR = "BLACK"
 #TODO 1. Create Screen - Done
 screen = Screen()
 screen.title(GAME_NAME)
-screen.setup(height=1.0, width=1.0)
+screen.setup(height=1080, width=1920)
 screen.bgcolor(BACKGROUND_COLOR)
 screen.listen()
 

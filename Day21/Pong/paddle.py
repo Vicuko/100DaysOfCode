@@ -13,3 +13,19 @@ class Paddle:
             new_part.color(color)
             new_part.penup()
             new_part.setpos(x = 0, y = head_pos - 20 * index)
+
+    def move_up(self):
+        highest_part_y = self.body[-1].ycor()
+        if highest_part_y + 20 < 540:
+        for part in self.body:
+            part_x = part.xcor()
+            part_y = part.ycor()
+            part.goto(part_x, part_y + 20)
+
+    def move_down(self):
+        lowest_part_y = self.body[-1].ycor()
+        if lowest_part_y - 20 >= -540:
+            for part in self.body:
+                part_x = part.xcor()
+                part_y = part.ycor()
+                part.goto(part_x, part_y - 20)

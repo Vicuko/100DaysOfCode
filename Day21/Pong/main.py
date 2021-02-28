@@ -1,10 +1,12 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 GAME_NAME = "TURBO PONG"
 BACKGROUND_COLOR = "BLACK"
+
 #TODO 1. Create Screen - Done
 screen = Screen()
 screen.title(GAME_NAME)
@@ -21,6 +23,10 @@ screen_width = screen.window_width()
 player1 = Paddle(screen_height = screen_height, screen_width = screen_width)
 player2 = Paddle(screen_height = screen_height, screen_width = screen_width)
 
+#TODO 4. Create the ball and make it move - Done
+ball = Ball(color="green")
+scoreboard = Scoreboard(screen_width=screen_width, screen_height= screen_height)
+
 player1.set_side(side="left")
 player2.set_side(side="right")
 
@@ -29,11 +35,7 @@ screen.onkey(fun=player1.move_down, key="s")
 screen.onkey(fun=player2.move_up, key="Up")
 screen.onkey(fun=player2.move_down, key="Down")
 
-#TODO 4. Create the ball and make it move - Done
-ball = Ball(color="green")
-
 def ball_wall_collision():
-    ball_x = ball.xcor()
     ball_y = ball.ycor()
 
     if ball_y >= screen_height // 2 - 20:
@@ -55,11 +57,11 @@ def ball_paddle_collision():
 def point_score():
     score = False
 
-    if player1.body[0].xcor() > ball.xcor():
+    if player1.body[0].xcor() - 10 > ball.xcor():
         player2.score += 1
         score = True
 
-    elif player2.body[0].xcor() < ball.xcor():
+    elif player2.body[0].xcor() + 10 < ball.xcor():
         player1.score += 1
         score = True
 
@@ -68,7 +70,7 @@ def point_score():
 game_on = True
 while game_on:
     screen.update()
-    time.sleep(0.05)
+    time.sleep(0.01)
     ball.move()
 
     # TODO 5. Detect collision with the wall and bounce - Done
@@ -79,6 +81,6 @@ while game_on:
     if point_score():
     # TODO 8. Keep Score
         ball.restart()
-        scoreboard.update()
+        scoreboard.update_score(player1.score, player2.score)
 
 screen.exitonclick()

@@ -12,10 +12,10 @@ class Ball(Turtle):
         self.setheading(random_heading)
 
     def move(self):
-        self.forward(10)
+        self.forward(5)
 
     def bounce(self, side):
-        random_trajectory_mod = random.randint(0,10)
+        random_trajectory_mod = random.randint(-5,5)
         if side == "right":
             heading_difference = 180 - self.heading()
 
@@ -28,7 +28,13 @@ class Ball(Turtle):
         elif side == "bottom":
             heading_difference = 270 - self.heading()
 
-        new_heading = ((self.heading() + 180) % 360 + heading_difference * 2 + random_trajectory_mod) % 360
+        new_heading = (self.heading() + 180) % 360 + heading_difference * 2
+
+        if side == "right" or side == "left":
+            new_heading += (random_trajectory_mod) % 360
+        else:
+            new_heading %= 360
+
         self.setheading(new_heading)
 
     def restart(self):

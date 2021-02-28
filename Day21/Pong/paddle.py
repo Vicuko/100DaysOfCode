@@ -7,6 +7,7 @@ class Paddle:
         self.screen_height = screen_height
         self.screen_width = screen_width
         self.create_paddle(length, color)
+        self.score = 0
 
     def create_paddle(self, length, color):
         head_pos = (length * 20) // 2 - 10

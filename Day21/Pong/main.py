@@ -36,11 +36,7 @@ def ball_wall_collision():
     ball_x = ball.xcor()
     ball_y = ball.ycor()
 
-    if ball_x >= screen_width // 2 - 20:
-        print ("Player 1 scores!!")
-    elif ball_x <= - screen_width // 2 + 20:
-        print("Player 2 scores!!")
-    elif ball_y >= screen_height // 2 - 20:
+    if ball_y >= screen_height // 2 - 20:
         ball.bounce(side="top")
     elif ball_y <= -screen_height // 2 + 20:
         ball.bounce(side="bottom")
@@ -56,6 +52,19 @@ def ball_paddle_collision():
         if ball.distance(part) <= 20 and part_x > ball.xcor():
             ball.bounce("right")
 
+def point_score():
+    score = False
+
+    if player1.body[0].xcor() > ball.xcor():
+        player2.score += 1
+        score = True
+
+    elif player2.body[0].xcor() < ball.xcor():
+        player1.score += 1
+        score = True
+
+    return score
+
 game_on = True
 while game_on:
     screen.update()
@@ -64,9 +73,12 @@ while game_on:
 
     # TODO 5. Detect collision with the wall and bounce - Done
     ball_wall_collision()
-    # TODO 6. Detect collision with paddle
+    # TODO 6. Detect collision with paddle - Done
     ball_paddle_collision()
     # TODO 7. Detect when paddle misses
+    if point_score():
     # TODO 8. Keep Score
+        ball.restart()
+        scoreboard.update()
 
 screen.exitonclick()

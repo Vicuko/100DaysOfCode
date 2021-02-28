@@ -30,3 +30,8 @@ class Ball(Turtle):
 
         new_heading = ((self.heading() + 180) % 360 + heading_difference * 2 + random_trajectory_mod) % 360
         self.setheading(new_heading)
+
+    def restart(self):
+        self.setposition(0,0)
+        random_heading = random.randint(0, 359)
+        self.setheading(random_heading)

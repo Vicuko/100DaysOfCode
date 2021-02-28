@@ -2,9 +2,10 @@ from turtle import Turtle
 
 class Paddle:
 
-    def __init__(self, screen_height, color = "white", length=4):
+    def __init__(self, screen_height, screen_width, color = "white", length=4):
         self.body = []
         self.screen_height = screen_height
+        self.screen_width = screen_width
         self.create_paddle(length, color)
 
     def create_paddle(self, length, color):
@@ -34,3 +35,16 @@ class Paddle:
                 part_x = part.xcor()
                 part_y = part.ycor()
                 part.goto(part_x, part_y - 20)
+
+    def set_side(self, side):
+        left_pos = - self.screen_width // 2 + 30
+        print("Left pos: ", left_pos)
+        right_pos = self.screen_width // 2 - 40
+        print("Right pos: ", right_pos)
+        if side == "left":
+            for part in self.body:
+                part.setx(left_pos)
+        elif side == "right":
+            for part in self.body:
+                part.setx(right_pos)
+

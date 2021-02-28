@@ -15,9 +15,12 @@ screen.listen()
 #TODO 2. Create and move a paddle
 #Prompt user for player name
 screen_height = screen.window_height()
-print ("Screen height: ", screen_height)
-player1 = Paddle(screen_height = screen_height)
-player2 = Paddle(screen_height = screen_height)
+screen_width = screen.window_width()
+player1 = Paddle(screen_height = screen_height, screen_width = screen_width)
+player2 = Paddle(screen_height = screen_height, screen_width = screen_width)
+
+player1.set_side(side="left")
+player2.set_side(side="right")
 
 screen.onkey(fun=player1.move_up, key="w")
 screen.onkey(fun=player1.move_down, key="s")

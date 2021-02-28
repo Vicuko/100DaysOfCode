@@ -30,7 +30,7 @@ screen.onkey(fun=player2.move_up, key="Up")
 screen.onkey(fun=player2.move_down, key="Down")
 
 #TODO 4. Create the ball and make it move - Done
-ball = Ball(color="green", speed = 10)
+ball = Ball(color="green")
 
 def ball_wall_collision():
     ball_x = ball.xcor()
@@ -45,16 +45,27 @@ def ball_wall_collision():
     elif ball_y <= -screen_height // 2 + 20:
         ball.bounce(side="bottom")
 
+def ball_paddle_collision():
+    for part in player1.body:
+        part_x = part.xcor()
+        if ball.distance(part) <= 20 and part_x < ball.xcor():
+            ball.bounce("left")
+
+    for part in player2.body:
+        part_x = part.xcor()
+        if ball.distance(part) <= 20 and part_x > ball.xcor():
+            ball.bounce("right")
+
 game_on = True
 while game_on:
     screen.update()
-    time.sleep(0.1)
+    time.sleep(0.05)
     ball.move()
-    # TODO 5. Detect collision with the wall and bounce
+
+    # TODO 5. Detect collision with the wall and bounce - Done
     ball_wall_collision()
-
-
     # TODO 6. Detect collision with paddle
+    ball_paddle_collision()
     # TODO 7. Detect when paddle misses
     # TODO 8. Keep Score
 

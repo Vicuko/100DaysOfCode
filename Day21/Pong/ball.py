@@ -3,17 +3,16 @@ import random
 
 class Ball(Turtle):
 
-    def __init__(self, color="red", speed = 30):
+    def __init__(self, color="red"):
         super().__init__()
         self.shape("circle")
         self.color(color)
         self.penup()
         random_heading = random.randint(0, 359)
         self.setheading(random_heading)
-        self.speed = speed
 
     def move(self):
-        self.forward(self.speed)
+        self.forward(10)
 
     def bounce(self, side):
         random_trajectory_mod = random.randint(0,10)

@@ -1,5 +1,6 @@
 from turtle import Screen
 from paddle import Paddle
+from ball import Ball
 import time
 
 GAME_NAME = "TURBO PONG"
@@ -12,7 +13,8 @@ screen.bgcolor(BACKGROUND_COLOR)
 screen.tracer(n=0)
 screen.listen()
 
-#TODO 2. Create and move a paddle
+#TODO 2. Create and move a paddle - Done
+#TODO 3. Create another paddle - Done
 #Prompt user for player name
 screen_height = screen.window_height()
 screen_width = screen.window_width()
@@ -27,19 +29,33 @@ screen.onkey(fun=player1.move_down, key="s")
 screen.onkey(fun=player2.move_up, key="Up")
 screen.onkey(fun=player2.move_down, key="Down")
 
-#TODO 3. Create another paddle
-#TODO 4. Create the ball and make it move
-#TODO 5. Detect collision with the wall and bounce
-#TODO 6. Detect collision with paddle
-#TODO 7. Detect when paddle misses
-#TODO 8. Keep Score
+#TODO 4. Create the ball and make it move - Done
+ball = Ball(color="green", speed = 10)
+
+def ball_wall_collision():
+    ball_x = ball.xcor()
+    ball_y = ball.ycor()
+
+    if ball_x >= screen_width // 2 - 20:
+        print ("Player 1 scores!!")
+    elif ball_x <= - screen_width // 2 + 20:
+        print("Player 2 scores!!")
+    elif ball_y >= screen_height // 2 - 20:
+        ball.bounce(side="top")
+    elif ball_y <= -screen_height // 2 + 20:
+        ball.bounce(side="bottom")
 
 game_on = True
 while game_on:
     screen.update()
     time.sleep(0.1)
-    #ball.move()
+    ball.move()
+    # TODO 5. Detect collision with the wall and bounce
+    ball_wall_collision()
 
 
+    # TODO 6. Detect collision with paddle
+    # TODO 7. Detect when paddle misses
+    # TODO 8. Keep Score
 
 screen.exitonclick()

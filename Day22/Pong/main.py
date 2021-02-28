@@ -48,30 +48,27 @@ def ball_wall_collision():
 
 
 def ball_paddle_collision():
-    for part in player1.body:
-        part_x = part.xcor()
-        if ball.distance(part) <= 20 and part_x < ball.xcor():
+
+    if  ball.distance(player1) <= (player1.body_length // 2):
+        if 15 > abs(player1.xcor() - ball.xcor()) >= 10:
             ball.bounce("left")
 
-    for part in player2.body:
-        part_x = part.xcor()
-        if ball.distance(part) <= 20 and part_x > ball.xcor():
+    elif  ball.distance(player2) <= (player2.body_length // 2):
+        if 15 > abs(player2.xcor() - ball.xcor()) >= 10:
             ball.bounce("right")
-
 
 def point_score():
     score = False
 
-    if player1.body[0].xcor() - 10 > ball.xcor():
+    if player1.xcor() - 10 > ball.xcor():
         player2.score += 1
         score = True
 
-    elif player2.body[0].xcor() + 10 < ball.xcor():
+    elif player2.xcor() + 10 < ball.xcor():
         player1.score += 1
         score = True
 
     return score
-
 
 game_on = True
 while game_on:

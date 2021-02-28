@@ -9,7 +9,7 @@ class Ball(Turtle):
         self.shape("circle")
         self.color(color)
         self.penup()
-        random_heading = random.randint(0, 359)
+        random_heading = random.choice([random.randint(10, 170), random.randint(190, 350)])
         self.setheading(random_heading)
 
     def move(self):

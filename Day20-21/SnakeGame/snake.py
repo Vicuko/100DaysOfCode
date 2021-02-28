@@ -9,6 +9,7 @@ class Snake:
         self.snake_color = color
         self.create_snake()
         self.head = self.body[0]
+        self.last_direction = self.head.heading()
 
     def create_snake(self):
         for position in range(self.init_size):
@@ -33,6 +34,7 @@ class Snake:
             next_position = next_body_part.position()
             this_body_part.goto(next_position)
         self.head.forward(self.body_size)
+        self.last_direction = self.head.heading()
 
     def move_up(self):
         self.change_direction(90)
@@ -47,8 +49,8 @@ class Snake:
         self.change_direction(180)
 
     def change_direction(self, new_direction):
-        # We make sure the snake doesnt' go backwards:
-        if abs(self.head.heading() - new_direction) != 180:
+        # We make sure the snake doesn't go backwards:
+        if abs(self.last_direction - new_direction) != 180:
             self.head.setheading(new_direction)
 
     def restart(self):

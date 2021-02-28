@@ -40,7 +40,7 @@ def game():
     game_on = True
     while game_on:
         screen.update()
-        time.sleep(0.1)
+        time.sleep(0.08)
         snake.move()
 
         #Detect collision between snake and food

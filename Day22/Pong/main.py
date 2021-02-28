@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
@@ -73,7 +71,7 @@ def point_score():
 game_on = True
 while game_on:
     screen.update()
-    time.sleep(0.01)
+    time.sleep(ball.move_speed)
     ball.move()
 
     # TODO 5. Detect collision with the wall and bounce - Done

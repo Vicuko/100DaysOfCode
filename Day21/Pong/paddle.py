@@ -1,8 +1,9 @@
 from turtle import Turtle
 
+
 class Paddle:
 
-    def __init__(self, screen_height, screen_width, color = "white", length=4):
+    def __init__(self, screen_height, screen_width, color="white", length=4):
         self.body = []
         self.screen_height = screen_height
         self.screen_width = screen_width
@@ -12,16 +13,16 @@ class Paddle:
     def create_paddle(self, length, color):
         head_pos = (length * 20) // 2 - 10
 
-        for index in range (length):
+        for index in range(length):
             new_part = Turtle(shape="square")
             new_part.color(color)
             new_part.penup()
-            new_part.setpos(x = 0, y = head_pos - 20 * index)
+            new_part.setpos(x=0, y=head_pos - 20 * index)
             self.body.append(new_part)
 
     def move_up(self):
         highest_part_y = self.body[0].ycor()
-        if highest_part_y + 20 < self.screen_height/2:
+        if highest_part_y + 20 < self.screen_height / 2:
 
             for part in self.body:
                 part_x = part.xcor()
@@ -30,7 +31,7 @@ class Paddle:
 
     def move_down(self):
         lowest_part_y = self.body[-1].ycor()
-        if lowest_part_y - 20 >= -(self.screen_height/2):
+        if lowest_part_y - 20 >= -(self.screen_height / 2):
 
             for part in self.body:
                 part_x = part.xcor()
@@ -48,4 +49,3 @@ class Paddle:
         elif side == "right":
             for part in self.body:
                 part.setx(right_pos)
-

@@ -1,6 +1,7 @@
 from turtle import Turtle
 import random
 
+
 class Ball(Turtle):
 
     def __init__(self, color="red"):
@@ -15,7 +16,7 @@ class Ball(Turtle):
         self.forward(5)
 
     def bounce(self, side):
-        random_trajectory_mod = random.randint(-5,5)
+        random_trajectory_mod = random.randint(-5, 5)
         if side == "right":
             heading_difference = 180 - self.heading()
 
@@ -38,6 +39,6 @@ class Ball(Turtle):
         self.setheading(new_heading)
 
     def restart(self):
-        self.setposition(0,0)
+        self.setposition(0, 0)
         random_heading = random.randint(0, 359)
         self.setheading(random_heading)

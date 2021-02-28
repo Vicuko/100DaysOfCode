@@ -22,12 +22,6 @@ class Snake:
         body_part.setpos(x = position_x, y = position_y)
         self.body.append(body_part)
 
-        counter = 0
-        for segment in self.body:
-            print (f"Coutner: {counter}\n")
-            print(segment.position())
-            counter += 1
-
     def extend(self):
         tail_pos = self.body[-1].position()
         self.add_segment(tail_pos[0], tail_pos[1])
@@ -55,7 +49,10 @@ class Snake:
     def change_direction(self, new_direction):
         # We make sure the snake doesnt' go backwards:
         if abs(self.head.heading() - new_direction) != 180:
-            print(new_direction)
             self.head.setheading(new_direction)
-        else:
-            print ("New_direction not possible! Can't go backwards...")
+
+    def restart(self):
+        for part in self.body:
+            part.hideturtle()
+        self.body=[]
+        self.create_snake()

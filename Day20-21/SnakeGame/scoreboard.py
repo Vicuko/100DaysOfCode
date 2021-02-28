@@ -11,7 +11,6 @@ class Scoreboard(Turtle):
         self.score = 0
         self.hideturtle()
         self.color(color)
-        self.setposition(0, 270)
         self.print_score()
 
     def increase_score(self):
@@ -24,10 +23,20 @@ class Scoreboard(Turtle):
 
     def print_score(self):
         score_text = f"Score: {self.score}"
+        self.setposition(0, 270)
         self.clear()
         self.write(score_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))
 
     def game_over(self):
         self.setposition(0,0)
         game_over_text = "Game Over!"
+        restart_text = "Press any key to play again!"
         self.write(game_over_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))
+        self.setposition(0, -20)
+        self.write(restart_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))
+
+
+    def startup_message(self):
+        self.setposition(0, 0)
+        startup_text = "Press any key to start the game"
+        self.write(startup_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))

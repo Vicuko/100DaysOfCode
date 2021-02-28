@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball

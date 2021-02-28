@@ -77,9 +77,9 @@ while game_on:
     ball_wall_collision()
     # TODO 6. Detect collision with paddle - Done
     ball_paddle_collision()
-    # TODO 7. Detect when paddle misses
+    # TODO 7. Detect when paddle misses - Done
     if point_score():
-    # TODO 8. Keep Score
+    # TODO 8. Keep Score - Done
         ball.restart()
         scoreboard.update_score(player1.score, player2.score)
 

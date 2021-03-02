@@ -3,7 +3,7 @@ FONT = ("Courier", 24, "normal")
 
 
 class Scoreboard(Turtle):
-    def __init__(self, level=0):
+    def __init__(self, level=1):
         super().__init__()
         self.penup()
         self.hideturtle()

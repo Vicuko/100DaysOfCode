@@ -6,7 +6,11 @@ from scoreboard import Scoreboard
 
 screen = Screen()
 screen.setup(width=600, height=600)
+screen.listen()
 screen.tracer(0)
+
+player = Player()
+screen.onkey(player.move_forward, key="Up")
 
 game_is_on = True
 while game_is_on:

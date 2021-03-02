@@ -17,7 +17,7 @@ class CarManager:
             self.traffic.append(car)
 
     def move_traffic(self, level=0):
-        move_distance = STARTING_MOVE_DISTANCE + level * MOVE_INCREMENT * 0.1
+        move_distance = STARTING_MOVE_DISTANCE + level * MOVE_INCREMENT * 0.5
         for car in self.traffic:
             car.move(move_distance)
             if car.xcor() <= -300:

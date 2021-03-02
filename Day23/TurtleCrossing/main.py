@@ -15,8 +15,8 @@ car_manager = CarManager()
 
 screen.onkey(player.move_forward, key="Up")
 
-game_is_on = True
-while game_is_on:
+game_on = True
+while game_on:
     time.sleep(0.1)
     screen.update()
 
@@ -28,3 +28,12 @@ while game_is_on:
 
     # Move traffic
     car_manager.move_traffic(scoreboard.level)
+
+    # Check for collision between cars and turtle
+    for car in car_manager.traffic:
+        if abs(car.xcor() - player.xcor()) <= 20:
+            if abs(car.ycor() - player.ycor()) <= 10:
+                game_on = False
+                scoreboard.game_over()
+
+screen.exitonclick()

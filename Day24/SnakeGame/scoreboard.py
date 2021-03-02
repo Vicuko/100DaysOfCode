@@ -9,7 +9,7 @@ class Scoreboard(Turtle):
     def __init__(self, color = "white"):
         super().__init__()
         self.score = 0
-        self.highscore = 0
+        self.highscore = self.get_high_score_data()
         self.hideturtle()
         self.color(color)
         self.print_score()
@@ -37,10 +37,22 @@ class Scoreboard(Turtle):
         self.write(restart_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))
         if self.score > self.highscore:
             self.highscore = self.score
+            self.store_high_score()
             self.print_score()
-
 
     def startup_message(self):
         self.setposition(0, 0)
         startup_text = "Press any key to start the game"
         self.write(startup_text, align=ALIGNMENT, font=(FONT, FONT_SIZE, FONT_TYPE))
+
+    def get_high_score_data(self):
+        with open("data.txt", mode="r") as file:
+            content = file.read()
+            if content:
+                return int(content)
+            else:
+                return 0
+
+    def store_high_score(self):
+        with open("data.txt", mode="w") as file:
+            file.write(f"{self.highscore}")

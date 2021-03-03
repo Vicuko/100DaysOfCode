@@ -75,9 +75,15 @@ squirrel_data = pandas.read_csv("2018_Central_Park_Squirrel_Census_-_Squirrel_Da
 grey_squirrels = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Gray"])
 red_squirrels = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Cinnamon"])
 black_squirrels = len(squirrel_data[squirrel_data["Primary Fur Color"] == "Black"])
+
 print(grey_squirrels)
 print(red_squirrels)
 print(black_squirrels)
+
+# Another way of retrieving the count with fewer lines of code:
+squir_data = squirrel_data[squirrel_data["Primary Fur Color"].isin(["Gray", "Cinnamon", "Black"])]
+grouped_squirrels = squir_data.groupby(["Primary Fur Color"]).size()
+print (grouped_squirrels)
 
 data_dict = {
     "Fur Color": ["Gray", "Cinnamon", "Black"],

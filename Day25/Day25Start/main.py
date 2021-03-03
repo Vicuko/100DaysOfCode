@@ -34,3 +34,16 @@ print (data_list)
 # Another way:
 temp_average = data["temp"].mean()
 print (round(temp_average,2))
+
+temp_max = data["temp"].max()
+print (temp_max)
+
+# We can also retrieve info from the columns like this, treating it like an object:
+temp_col = data.temp
+print (temp_col)
+
+# Retrieve a row filtering by a column value:
+print (data[data.day == "Monday"])
+
+# Another example, row with highest temperature of the week:
+print (data[data.temp == data.temp.max()])

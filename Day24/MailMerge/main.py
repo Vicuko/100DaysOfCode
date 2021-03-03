@@ -6,8 +6,8 @@
 #Hint1: This method will help you: https://www.w3schools.com/python/ref_file_readlines.asp
     #Hint2: This method will also help you: https://www.w3schools.com/python/ref_string_replace.asp
         #Hint3: THis method will help you: https://www.w3schools.com/python/ref_string_strip.asp
-NAMES_DIR = "Input/Names/invited_names.txt"
-LETTER_DIR = "Input/Letters/starting_letter.txt"
+NAMES_DIR = "./Input/Names/invited_names.txt"
+LETTER_DIR = "./Input/Letters/starting_letter.txt"
 names = None
 letter = None
 
@@ -16,8 +16,6 @@ with open(NAMES_DIR, mode="r") as file:
     names = []
     for line in lines:
         names.append(line.strip())
-    print (names)
-
 
 with open(LETTER_DIR, mode="r") as file:
     letter = file.read()

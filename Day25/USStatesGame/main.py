@@ -26,6 +26,9 @@ while len(correct_states) < 50:
     else:
         answer_state = screen.textinput(title="Guess the State", prompt="What's another state's name?").title()
 
+    if answer_state == "Exit":
+        break
+
     answer_in_tables = (states_data.state == answer_state)
     if answer_in_tables.any() and answer_state not in correct_states:
         x_coord = int(states_data[answer_in_tables].x)
@@ -34,7 +37,7 @@ while len(correct_states) < 50:
         states_writer.write(answer_state, align="center")
         correct_states.append(answer_state)
 
-    # print (answer_state)
-#
 
-turtle.mainloop()
+missing_states = states_data[~states_data.state.isin(correct_states)].state
+missing_states.to_csv("states_to_learn.csv")
+print (missing_states)

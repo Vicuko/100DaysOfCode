@@ -20,6 +20,15 @@ DATA_FILE = "./weather_data.csv"
 import pandas
 
 data = pandas.read_csv(DATA_FILE)
-print(type(data))
-print(type(data["temp"]))
+# print(type(data))
+# print(type(data["temp"]))
+
+data_dict = data.to_dict()
+print (data_dict)
+
+data_list = data["temp"].to_list()
+print (data_list)
+
+temperature_average = sum(data_list) / len(data_list)
+print (round(temperature_average, 2))
 

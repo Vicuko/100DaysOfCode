@@ -47,3 +47,23 @@ print (data[data.day == "Monday"])
 
 # Another example, row with highest temperature of the week:
 print (data[data.temp == data.temp.max()])
+
+# Show Mondays temperature into fahrenheit
+monday = data[data.day == "Monday"]
+monday_temp = monday.temp
+monday_temp_fahrenheit = monday_temp * 9 / 5 + 32
+print (monday_temp_fahrenheit)
+
+# Now let's create a dataframe from the python dictionary:
+
+data_dict = {
+    "students": ["Amy", "James", "Angela"],
+    "scores": [76, 56, 64]
+}
+
+pandas_data = pandas.DataFrame(data_dict)
+print (pandas_data)
+
+# We can now convert the DataFrame into a csv file:
+data = pandas_data
+data.to_csv("new_data.csv")

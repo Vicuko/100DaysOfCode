@@ -7,16 +7,19 @@ DATA_FILE = "./weather_data.csv"
 # retrieve all of the information, which can get complicated.
 # This is why, we'll use the csv module:
 
-import csv
-
-with open(DATA_FILE) as data_file:
-    data = csv.reader(data_file)
-    temperatures = []
-    for row in data:
-        if row[1] != "temp":
-            temperatures.append(int(row[1]))
-    print(temperatures)
-
-# import pandas
+# import csv
 #
-# pandas.read_csv(DATA_FILE)
+# with open(DATA_FILE) as data_file:
+#     data = csv.reader(data_file)
+#     temperatures = []
+#     for row in data:
+#         if row[1] != "temp":
+#             temperatures.append(int(row[1]))
+#     print(temperatures)
+
+import pandas
+
+data = pandas.read_csv(DATA_FILE)
+print(type(data))
+print(type(data["temp"]))
+

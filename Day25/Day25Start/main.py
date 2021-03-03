@@ -29,6 +29,8 @@ print (data_dict)
 data_list = data["temp"].to_list()
 print (data_list)
 
-temperature_average = sum(data_list) / len(data_list)
-print (round(temperature_average, 2))
-
+# temperature_average = sum(data_list) / len(data_list)
+# print (round(temperature_average, 2))
+# Another way:
+temp_average = data["temp"].mean()
+print (round(temp_average,2))

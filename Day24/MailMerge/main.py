@@ -9,9 +9,6 @@
 NAMES_DIR = "./Input/Names/invited_names.txt"
 LETTER_DIR = "./Input/Letters/starting_letter.txt"
 
-names = None
-letter = None
-
 with open(NAMES_DIR, mode="r") as file:
     names = file.readlines()
 

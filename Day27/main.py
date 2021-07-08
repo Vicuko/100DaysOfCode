@@ -15,7 +15,10 @@ my_label.config(text="New Text")
 
 #Button
 
-button = Button(text="Click Me")
+def button_clicked():
+    print("Button superclicked!!")
+
+button = Button(text="Click Me", command=button_clicked)
 button.pack()
 
 

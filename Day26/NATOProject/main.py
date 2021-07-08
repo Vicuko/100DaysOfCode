@@ -10,7 +10,6 @@
 
 import pandas as pd
 nato_data = pd.read_csv("nato_phonetic_alphabet.csv")
-data = pd.DataFrame(nato_data)
 
 #TODO 1. Create a dictionary in this format:
 # {"A": "Alfa", "B": "Bravo"}

@@ -8,6 +8,8 @@ window.config(padx=40, pady=40)
 
 label = Label(text="Label 1", font=("Arial", 24, "italic"))
 label.grid(row=0, column=0)
+# More padding in any element
+label.config(padx=100, pady=100)
 
 button1 = Button(text="Button 1")
 button1.grid(row=1, column=1)

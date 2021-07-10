@@ -5,12 +5,21 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 1
+WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+
+def reset_timer():
+    global reps
+    window.after_cancel(timer)
+    canvas.itemconfig(timer_text, text="00:00")
+    title_label.config(text="Timer", fg=GREEN)
+    checkmark.config(text="")
+    reps = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
 def start_timer():
@@ -38,17 +47,20 @@ def start_timer():
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
-    tenth_mins = count//600
-    mins = (count % 600) // 60
-    tenth_seconds= (count % 60) // 10
-    seconds = (count % 60) % 10
+    tenth_mins = int(count//600)
+    mins = int((count % 600) // 60)
+    tenth_seconds = int((count % 60) // 10)
+    seconds = int((count % 60) % 10)
     counter_text = f"{tenth_mins}{mins}:{tenth_seconds}{seconds}"
 
     canvas.itemconfig(timer_text, text=counter_text)
     if count > 0:
-        window.after(1000, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
+        #Now we update the number of work rounds completed:
+        checkmark.config(text=("✔" * (reps//2)))
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -68,8 +80,8 @@ canvas.grid(row=1, column=1)
 
 title_label = Label(text="Timer", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 35))
 start_button = Button(text="Start", bg=YELLOW, highlightthickness=0, command=start_timer)
-checkmark = Label(text="✔", fg=GREEN, bg=YELLOW, font=(FONT_NAME, 35))
-reset_button = Button(text="Reset", highlightthickness=0)
+checkmark = Label(fg=GREEN, bg=YELLOW, font=(FONT_NAME, 35))
+reset_button = Button(text="Reset", highlightthickness=0, command=reset_timer)
 
 title_label.grid(row=0, column=1)
 start_button.grid(row=2, column=0)

@@ -27,9 +27,9 @@ def generate_password():
     # password_list += ([choice(numbers) for _ in range(nr_letters)])
 
     shuffle(password_list)
-    password_list = "".join(password_list)
+    password = "".join(password_list)
     password_entry.delete(0, "end")
-    password_entry.insert(0, string=password_list)
+    password_entry.insert(0, string=password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_password():

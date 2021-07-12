@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 FONT_NAME = "Arial"
 FONT_SIZE = 14
@@ -11,11 +12,17 @@ def save_password():
     email = email_entry.get()
     password = password_entry.get()
 
-    with open("passwords.txt", "a") as file:
-        file.write(f"{website} | {email} | {password}\n")
-        web_entry.delete(0, "end")
-        email_entry.delete(0, "end")
-        password_entry.delete(0, "end")
+    save_ok = messagebox.askokcancel(title=website, message=f"These are the details introduced: "
+                                                  f"\nEmail: {email}"
+                                                  f"\nPassword:{password}"
+                                                  f"\nIs it ok to save?")
+
+    if save_ok:
+        with open("passwords.txt", "a") as file:
+            file.write(f"{website} | {email} | {password}\n")
+            web_entry.delete(0, "end")
+            email_entry.delete(0, "end")
+            password_entry.delete(0, "end")
 
 # ---------------------------- UI SETUP ------------------------------- #
 

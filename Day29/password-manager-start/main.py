@@ -12,17 +12,21 @@ def save_password():
     email = email_entry.get()
     password = password_entry.get()
 
-    save_ok = messagebox.askokcancel(title=website, message=f"These are the details introduced: "
-                                                  f"\nEmail: {email}"
-                                                  f"\nPassword:{password}"
-                                                  f"\nIs it ok to save?")
+    if not website or not password:
+        messagebox.showwarning(title="Fields uninformed", message=f"Please, don't leave any fields empty!")
 
-    if save_ok:
-        with open("passwords.txt", "a") as file:
-            file.write(f"{website} | {email} | {password}\n")
-            web_entry.delete(0, "end")
-            email_entry.delete(0, "end")
-            password_entry.delete(0, "end")
+    else:
+        save_ok = messagebox.askokcancel(title=website, message=f"These are the details introduced: "
+                                                      f"\nEmail: {email}"
+                                                      f"\nPassword:{password}"
+                                                      f"\nIs it ok to save?")
+
+        if save_ok:
+            with open("passwords.txt", "a") as file:
+                file.write(f"{website} | {email} | {password}\n")
+                web_entry.delete(0, "end")
+                email_entry.delete(0, "end")
+                password_entry.delete(0, "end")
 
 # ---------------------------- UI SETUP ------------------------------- #
 

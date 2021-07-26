@@ -71,6 +71,36 @@ def save_password():
             # email_entry.delete(0, "end")
             password_entry.delete(0, "end")
 
+def show_error_message(title, message):
+    messagebox.showwarning(title=title, message=message)
+
+def show_info_message(title, message):
+    messagebox.showinfo(title=title, message=message)
+
+def search_password():
+    website = web_entry.get()
+    if not website:
+        show_error_message(title="Missing website", message="Please introduce a website for the search.")
+        return
+
+    try:
+        with open("data.json", "r") as file:
+            # Read old data:
+            data = json.load(file)
+
+    except FileNotFoundError:
+        show_error_message(title="Password missing", message=f"There is now password for {website}")
+
+    else:
+        try:
+            web_data = data[website]
+        except KeyError:
+            show_error_message(title="Password missing", message=f"There is now password for {website}")
+        else:
+            email = web_data["email"]
+            password = web_data["password"]
+            show_info_message(title="Website information", message=f"Email: {email}\nPassword: {password}")
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
@@ -84,7 +114,8 @@ canvas.grid(row=0, column=1)
 
 #Create elements to be shown on the screen:
 web_label = Label(text="Website:", font=(FONT_NAME, FONT_SIZE))
-web_entry = Entry(width=35)
+web_entry = Entry(width=24)
+search_button = Button(text="Search", width=6, command=search_password)
 web_entry.focus()
 # web_entry.insert(0, string="www.amazingwebsite.com")
 
@@ -99,7 +130,8 @@ add_button = Button(text="Add", width=33, command=save_password)
 
 #Position elements on screen:
 web_label.grid(row=1, column=0)
-web_entry.grid(row=1, column=1, columnspan=2)
+web_entry.grid(row=1, column=1)
+search_button.grid(row=1, column=2)
 
 email_label.grid(row=2, column=0)
 email_entry.grid(row=2, column=1, columnspan=2)

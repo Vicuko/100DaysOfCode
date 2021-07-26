@@ -96,14 +96,14 @@ def search_password():
         show_error_message(title="File missing", message=f"There is now data file in the system")
 
     else:
-        try:
+        if website in data:
             web_data = data[website]
-        except KeyError:
-            show_error_message(title="Password missing", message=f"There is now password for {website}")
-        else:
             email = web_data["email"]
             password = web_data["password"]
             show_info_message(title="Website information", message=f"Email: {email}\nPassword: {password}")
+        else:
+            show_error_message(title="Password missing", message=f"There is now password for {website}")
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 

@@ -50,8 +50,23 @@ def save_password():
         messagebox.showwarning(title="Fields uninformed", message=f"Please, don't leave any fields empty!")
 
     else:
-        with open("data.json", "w") as file:
-            json.dump(new_data, file, indent=4)
+        try:
+            with open("data.json", "r") as file:
+                # Read old data:
+                data = json.load(file)
+                # Update old data with new one
+                data.update(new_data)
+
+        except FileNotFoundError:
+            with open("data.json", "w") as file:
+                # Write new data:
+                json.dump(new_data, file, indent=4)
+
+        else:
+            with open("data.json", "w") as file:
+                # Write new data:
+                json.dump(data, file, indent=4)
+        finally:
             web_entry.delete(0, "end")
             # email_entry.delete(0, "end")
             password_entry.delete(0, "end")

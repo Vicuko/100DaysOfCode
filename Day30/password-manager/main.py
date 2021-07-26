@@ -71,11 +71,15 @@ def save_password():
             # email_entry.delete(0, "end")
             password_entry.delete(0, "end")
 
+
+# ----------------------------  Error Messages ----------------------------
 def show_error_message(title, message):
     messagebox.showwarning(title=title, message=message)
 
 def show_info_message(title, message):
     messagebox.showinfo(title=title, message=message)
+
+# ----------------------------  Password search ----------------------------
 
 def search_password():
     website = web_entry.get()

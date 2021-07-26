@@ -89,7 +89,7 @@ def search_password():
             data = json.load(file)
 
     except FileNotFoundError:
-        show_error_message(title="Password missing", message=f"There is now password for {website}")
+        show_error_message(title="File missing", message=f"There is now data file in the system")
 
     else:
         try:

@@ -1,4 +1,6 @@
 from tkinter import *
+import pandas as pd
+import random
 
 FRONT_COLOR = "#FFFFFF"
 BACKGROUND_COLOR = "#B1DDC6"
@@ -18,12 +20,23 @@ wrong_img = PhotoImage(file="./images/wrong.png")
 card_front = PhotoImage(file="./images/card_front.png")
 card_back = PhotoImage(file="./images/card_back.png")
 
+csv_data = pd.read_csv("./data/french_words.csv")
+words_data = csv_data.to_dict(orient="records")
+print(words_data)
+
+
 #Functions for logic
+def show_new_word():
+    if words_data:
+        next_word_index = random.randint(0,len(words_data)-1)
+        french_word = words_data[next_word_index]["French"]
+        word_label.config(text=french_word)
+
 def wrong_function():
-    pass
+    show_new_word()
 
 def right_function():
-    pass
+    show_new_word()
 
 def switch_background():
     # To replace image:

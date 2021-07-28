@@ -33,8 +33,8 @@ def show_new_word():
     global current_word
     global timer
     if words_data:
-        current_word = random.randint(0,len(words_data)-1)
-        french_word = words_data[current_word]["French"]
+        current_word = random.choice(words_data)
+        french_word = current_word["French"]
 
         #Update canvas content:
         canvas.itemconfig(title, text="French", fill=FRONT_COLOR)
@@ -46,7 +46,7 @@ def show_new_word():
 def show_back():
     # global timer
     # window.after_cancel(timer)
-    english_word = words_data[current_word]["English"]
+    english_word = current_word["English"]
 
     # Update canvas content:
     canvas.itemconfig(title, text="English", fill=BACK_COLOR)

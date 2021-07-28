@@ -29,9 +29,9 @@ print(words_data)
 current_word = 0
 
 #Functions for logic
-def show_new_word():
-    global current_word
-    global timer
+def show_next():
+    global current_word, flip_timer
+    window.after_cancel(flip_timer)
     if words_data:
         current_word = random.choice(words_data)
         french_word = current_word["French"]
@@ -41,11 +41,9 @@ def show_new_word():
         canvas.itemconfig(word, text=french_word, fill=FRONT_COLOR)
         canvas.itemconfig(canvas_image, image=card_front)
 
-        timer = window.after(3000, show_back)
+        flip_timer = window.after(3000, show_back)
 
 def show_back():
-    # global timer
-    # window.after_cancel(timer)
     english_word = current_word["English"]
 
     # Update canvas content:
@@ -56,19 +54,22 @@ def show_back():
 
 def wrong_function():
     # window.after_cancel(timer)
-    show_new_word()
+    show_next()
 
 def right_function():
     # window.after_cancel(timer)
-    show_new_word()
+    show_next()
+
+#Create timer for turning around cards and be able to tap onto it to cancel it
+flip_timer = window.after(3000, show_back)
 
 #Elements to be shown on the screen
 canvas = Canvas(width=800, height=526, highlightthickness=0, bg=BACKGROUND_COLOR)
 canvas_image = canvas.create_image(400, 263, image=card_front)
 title = canvas.create_text(400, 150, text="Title", font=(FONT_NAME, TITLE_FONT_SIZE, TITLE_FONT_STYLE))
 word = canvas.create_text(400, 263, text="Word", font=(FONT_NAME, WORD_FONT_SIZE, WORD_FONT_STYLE))
-wrong_button = Button(image=wrong_img, highlightthickness=0, bd=0, command=wrong_function)
-right_button = Button(image=right_img, highlightthickness=0, bd=0, command=right_function)
+wrong_button = Button(image=wrong_img, highlightthickness=0, bd=0, command=show_next)
+right_button = Button(image=right_img, highlightthickness=0, bd=0, command=show_next)
 
 #Place elements on window
 canvas.grid(row=0, column=0, columnspan=2)

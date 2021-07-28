@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 import pandas as pd
 import random
 
@@ -27,7 +28,6 @@ try:
 except FileNotFoundError:
     csv_data = pd.read_csv("./data/french_words.csv")
 
-
 words_data = csv_data.to_dict(orient="records")
 print(words_data)
 
@@ -47,6 +47,9 @@ def show_next():
         canvas.itemconfig(canvas_image, image=card_front)
 
         flip_timer = window.after(3000, show_back)
+
+    else:
+        messagebox.showwarning(title="You know all", message="You have completed all flashcards\nCongratulations!")
 
 def show_back():
     english_word = current_word["English"]

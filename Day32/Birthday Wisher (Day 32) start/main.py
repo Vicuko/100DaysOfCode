@@ -23,4 +23,4 @@ if weekday == 4:
             connection.starttls()
             connection.login(user=my_email, password=password)
             connection.sendmail(from_addr=my_email, to_addrs="receiver@gmail.com",
-                                msg=f"Subject: Motivation Mail\n\n{random_quote}")
+                                msg=f"Subject: Monday Motivation\n\n{random_quote}")

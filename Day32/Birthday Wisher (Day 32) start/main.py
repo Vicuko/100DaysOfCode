@@ -1,25 +1,27 @@
-# from smtplib import SMTP
-# import passwords
-#
-# my_email = "mymail@gmail.com"
-# password = passwords.GMAIL_PASS
-#
-# with SMTP(host="smtp.gmail.com") as connection:
-#     connection.starttls()
-#     connection.login(user=my_email, password=password)
-#     connection.sendmail(from_addr=my_email, to_addrs="receivermail@gmail.com",
-#                         msg="Subject: Superemail\n\n"
-#                             "<b>Hello</b>")
-#     connection.close()
-
+from smtplib import SMTP
+import passwords
 import datetime as dt
+import random
+#
+my_email = "sender@gmail.com"
+password = passwords.GMAIL_PASS
 
-time_now = dt.datetime.now()
-year = time_now.year
-month = time_now.month
-# Day of the week (1-7):
-weekday = time_now.weekday()
-print(type(time_now))
 
-date_of_birth = dt.datetime(day=1, month=6, year=1987, hour=1)
-print(date_of_birth)
+now = dt.datetime.now()
+weekday = now.weekday()
+
+if weekday == 4:
+    try:
+        with open("quotes.txt") as quotes_file:
+            content = quotes_file.readlines()
+            random_quote = random.choice(content)
+            print(random_quote)
+    except FileNotFoundError as error_message:
+        print(error_message)
+    else:
+        with SMTP(host="smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(user=my_email, password=password)
+            connection.sendmail(from_addr=my_email, to_addrs="receiver@gmail.com",
+                                msg="Subject: Motivation Mail\n\n" +
+                                    str(random_quote))

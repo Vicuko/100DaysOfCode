@@ -1,5 +1,4 @@
 import time
-
 import requests
 from datetime import datetime
 from smtplib import SMTP
@@ -42,23 +41,27 @@ def get_suntime(longitude, latitude):
 
 def is_night(sunrise, sunset):
     current_hour = datetime.now().hour
-    if current_hour > sunset or current_hour < sunrise:
+    if current_hour >= sunset or current_hour <= sunrise:
         return True
     return False
 
-def send_look_up():
+def is_iss_overhead():
+    iss_lng, iss_lat = get_ISS_location()
+    if MY_LONG - 5 <= -iss_lng <= MY_LONG + 5 and MY_LAT - 5 <= iss_lat <= MY_LAT + 5:
+        return True
+    return False
+
+def send_look_up_mail():
     with SMTP(host="smtp.gmail.com") as connection:
         connection.starttls()
         connection.login(user=MY_MAIL, password=MY_PASS)
         connection.sendmail(from_addr=MY_MAIL, to_addrs=RECEIVER, msg="Subject:Look up to the sky!\n\n"
                                                                       "Hey, the ISS is over the sky and it's dark. Take a look!!")
-
 def check_ISS_proximity():
-    iss_lng, iss_lat = get_ISS_location()
-    if MY_LONG - 5 <= -iss_lng <= MY_LONG + 5 and MY_LAT -5 <= iss_lat <= MY_LAT + 5:
+    if is_iss_overhead():
         sunrise, sunset = get_suntime(MY_LONG, MY_LAT)
         if is_night(sunrise, sunset):
-            send_look_up()
+            send_look_up_mail()
             return (True)
     else:
         print("It's not dark or close")

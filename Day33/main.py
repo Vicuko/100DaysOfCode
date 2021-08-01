@@ -4,17 +4,17 @@ from datetime import datetime
 MY_LAT = 43.349590
 MY_LONG = -3.326350
 
-# response = requests.get(url="http://api.open-notify.org/iss-now.json")
-# print(response.status_code)
-#
-# response.raise_for_status()
-#
-# data = response.json()
-# iss_data = data["iss_position"]
-# longitude = iss_data["longitude"]
-# latitude = iss_data["latitude"]
-# iss_position = (latitude, longitude)
-# print(iss_position)
+response = requests.get(url="http://api.open-notify.org/iss-now.json")
+print(response.status_code)
+
+response.raise_for_status()
+
+data = response.json()
+iss_data = data["iss_position"]
+longitude = float(iss_data["longitude"])
+latitude = float(iss_data["latitude"])
+iss_position = (latitude, longitude)
+print(iss_position)
 
 parameters = {
     "lat": MY_LAT,
@@ -25,8 +25,8 @@ parameters = {
 response = requests.get("https://api.sunrise-sunset.org/json", params=parameters)
 response.raise_for_status()
 data = response.json()
-sunrise = data["results"]["sunrise"].split("T")[1].split(":")[0]
-sunset = data["results"]["sunset"].split("T")[1].split(":")[0]
+sunrise = int(data["results"]["sunrise"].split("T")[1].split(":")[0])
+sunset = int(data["results"]["sunset"].split("T")[1].split(":")[0])
 
 print(sunrise)
 print(sunset)
